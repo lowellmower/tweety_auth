@@ -8,11 +8,29 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.provider = auth.provider
+      user.uid = auth.uid
+      # set user img and name by uncommenting
       # user.name = auth.info.name   # assuming the user model has a name
       # user.image = auth.info.image # assuming the user model has an image
     end
+  end
+
+  def self.new_with_session(params, session)
+    # override devise validations to hide password field
+    if session['devise.user_attributes']
+      new(session['devise.user_attributes'], without_protection: true) do |user|
+        user.attributes = params
+        user.valid?
+      end
+    else
+      # fallback to normal devise behavior to create new user instnace
+      super
+    end
+  end
+
+  def password_required?
+    super && provider.blank?
   end
 
 end
