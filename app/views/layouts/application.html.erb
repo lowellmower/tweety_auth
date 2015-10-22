@@ -7,7 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= flash_messages %>
+  <%= flash_messages %>
+
+  <nav class="navbar-custom navbar-transparent">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"><p style="font-size: 25px;" class="glyphicon glyphicon-sunglasses"></p></span>
+        </button>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+           <li><%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %></li>
+            <% if current_user %>
+              <li><%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "Edit Acct", edit_user_registration_path %></li>
+            <% end %>
+          <li><%= link_to "Sign In", new_user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+
 
 <%= yield %>
 
