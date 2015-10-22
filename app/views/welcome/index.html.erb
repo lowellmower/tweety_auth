@@ -1,3 +1,7 @@
 <h1>Birds on Rails</h1>
 <%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
-<%= link_to "Signout", destroy_user_session_path, method: :delete %>
+<% if current_user %>
+  <%= link_to "Signout", destroy_user_session_path, method: :delete %>
+<% end %>
+<%= link_to "Sign In", new_user_session_path %>
+<%= link_to "Sign Up", new_user_registration_path %>
