@@ -22,7 +22,9 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-           <li><%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %></li>
+            <% if !current_user %>
+              <li><%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter), class: 'btn btn-primary' %></li>
+            <% end %>
             <% if current_user %>
               <li><%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "Edit Acct", edit_user_registration_path %></li>
