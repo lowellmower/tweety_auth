@@ -1,28 +1,12 @@
-== README
+Tweety Auth
+=============
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##### An example of a Twitter white listed app retrieving and saving email through OmniAuth and creating user with Devise
+-------
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+# Setting Up Dev Env:
+    $ git clone https://github.com/lowellmower/tweety_auth.git
+    $ bundle install
+    $ bundle exec rake db:create
+    $ bundle exec rake db:migrate
+    $ bundle exec rspec
