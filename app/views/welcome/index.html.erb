@@ -5,6 +5,8 @@
   <center>
     <% if current_user %>
       <%= image_tag('http://www.animatedimages.org/data/media/230/animated-bird-image-0086.gif') %>
+      <h2>Your DB email is:</h2>
+      <p><%= current_user.email %></p>
     <% end %>
   </center>
 </div>
