@@ -21,16 +21,17 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse">
+        <%= link_to 'Home', root_path, class: 'navbar-brand' %>
         <ul class="nav navbar-nav navbar-right">
             <% if !current_user %>
               <li><%= link_to "Sign in with Twitter", "/users/auth/twitter?include_email=email", class: 'btn btn-primary' %></li>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+              <li><%= link_to "Sign Up", new_user_registration_path %></li>
             <% end %>
             <% if current_user %>
               <li><%= link_to "Signout", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "Edit Acct", edit_user_registration_path %></li>
             <% end %>
-          <li><%= link_to "Sign In", new_user_session_path %></li>
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -43,4 +44,25 @@
 <%= yield %>
 
 </body>
+<footer class="footer navbar-fixed-bottom">
+  <div class="container footer">
+    <ul class="list-inline text-center text-muted footer">
+      <li>
+        <a href="http://www.github.com/lowellmower/tweety_auth" target="_blank">GitHub</a>
+      </li>
+      <li>
+        <a href="http://www.linkedin.com/in/lowellmower" target="_blank">LinkedIn</a>
+      </li>
+      <li>
+        <a href="http://www.twitter.com/lowellmower" target="_blank">@lowellmower</a>
+      </li>
+      <li>
+        <a href="/privacy">Privacy</a>
+      </li>
+      <li>
+        <a href="/terms">Terms & Conditions</a>
+      </li>
+    </ul>
+  </div>
+</footer>
 </html>
