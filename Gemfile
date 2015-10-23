@@ -8,7 +8,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
-gem 'omniauth-twitter'
+gem 'omniauth-twitter', '~> 1.2.1'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
