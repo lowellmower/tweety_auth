@@ -6,19 +6,20 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [:twitter]
 
+  # find or create new user based on UID && provider
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
-      # set user img and name by uncommenting
-      # user.name = auth.info.name   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
+
+      # user.name = auth.info.name   => if user model has username
+      # user.image = auth.info.image => if user model has image
     end
   end
 
+  # new user based off saved session info
   def self.new_with_session(params, session)
-    # override devise validations to hide password field
     if session['devise.user_attributes']
       new(session['devise.user_attributes'], without_protection: true) do |user|
         user.attributes = params
@@ -30,14 +31,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  # boolean for email field in form
   def email_required?
     super && email.blank?
   end
 
+  # boolean for password field in form
   # def password_required?
   #   super && provider.blank?
   # end
 
+  # allow update with blank password field
   def update_with_password(params, *options)
     if encrypted_password.blank?
       update_attributes(params, *options)
