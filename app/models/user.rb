@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      # user.email = auth.info.email <= would like to have something like this
+      user.email = auth.info.email
       # set user img and name by uncommenting
       # user.name = auth.info.name   # assuming the user model has a name
       # user.image = auth.info.image # assuming the user model has an image
